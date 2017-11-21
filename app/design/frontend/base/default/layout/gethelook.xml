@@ -1,0 +1,38 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <gethelook_index_index>   
+    <reference name="root">
+		<action method="setTemplate">
+			<template>page/2columns-left.phtml</template>
+		</action>
+	</reference>
+	<update handle="customer_account" />
+    <reference name="content">   
+      <block type="gethelook/index" name="gethelook_index" template="gethelook/index.phtml"/>   
+    </reference>   
+  </gethelook_index_index>   
+  
+  <gethelook_index_new>   
+    <reference name="root">
+		<action method="setTemplate">
+			<template>page/2columns-left.phtml</template>
+		</action>
+	</reference>
+	<update handle="customer_account" />
+    <reference name="content">   
+      <block type="gethelook/index" name="gethelook_index" template="gethelook/new.phtml"/>   
+    </reference>   
+  </gethelook_index_new> 
+  <gethelook_index_edit>   
+    <reference name="root">
+		<action method="setTemplate">
+			<template>page/2columns-left.phtml</template>
+		</action>
+	</reference>
+	<update handle="customer_account" />
+    <reference name="content">   
+      <block type="gethelook/index" name="gethelook_edit" template="gethelook/edit.phtml"/>   
+    </reference>   
+  </gethelook_index_edit> 
+</layout>   
+	

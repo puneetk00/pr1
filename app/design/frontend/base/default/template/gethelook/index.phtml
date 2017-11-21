@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+$admin_user = Mage::getSingleton('customer/session')->getCustomer()->getId();
+$collection = Mage::getModel("gethelook/gethelook")->getCollection()->addFieldToFilter('customer_id',$admin_user);	
+?>
+<?php if(count($collection)>0): ?>
+<div class="page-title">
+    <h1><?php echo $this->__('Get The Look') ?></h1>
+	<button type="button" title="Add New Look" class="button" onclick="window.location='<?php echo $this->getUrl("getthelook/index/new") ?>';">
+		<span>
+			<span>Add New Look</span>
+		</span>
+	</button>
+</div>
+
+<table class="data-table orders" id="my-orders-table" style="width:100%">
+    <col width="100" />
+    <col width="300"/>
+    <col width="100"/>
+    <thead>
+        <tr>
+            <th class="number"><?php echo $this->__('Sl #') ?></th>
+            <th class="date"><?php echo $this->__('Name') ?></th>
+            <th class="date"><?php echo $this->__('Action') ?></th>
+            <th class="date"><?php echo $this->__('Delete') ?></th>
+		</tr>
+    </thead>
+    <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($collection as $_item): ?>
+        <tr>
+            <td class="number"><?php echo $_item->getId() ?></td>
+            <td class="ship"><?php echo $_item->getName()  ?></td>
+            <td class="ship"><a href="<?php echo $this->getUrl('getthelook/index/edit/',array('id'=> $_item->getId()))  ?>">Edit</a></td>
+			<td><a href="javascript:deleteConfirm('Are you sure you want to do this?', '<?php echo $this->getUrl('gethelook/index/delete', array('id'=>$_item->getId())); ?>')">Delete</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table');</script>
+<script type="text/javascript">
+function deleteConfirm(msg,url) {
+    var txt;
+    if (confirm(msg) == true) {
+       window.location = url;
+	   edit_form.submit();
+    }
+    
+}	
+</script>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no orders.'); ?></p>
+<?php endif ?>
+

@@ -1,0 +1,317 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.9.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ */
+?>
+ 
+<?php 
+/**
+ * get seller id
+ */
+$id = $this->getRequest()->getParam('id');
+$currentDate = Mage::getModel('core/date')->date('Y-m-d');
+$targetPath = 'marketplace/seller/displayseller/id/' . 2;
+$mainUrlRewrite     = Mage::getModel('core/url_rewrite')->load($targetPath, 'target_path');
+$getRequestPath     = $mainUrlRewrite->getRequestPath();
+$getlookid = Mage::app()->getRequest()->getParam("getlook");
+$getlookobject = Mage::getModel("catalog/product")->load($getlookid);
+$displayProduct = Mage::getModel("gethelook/gethelook")->load($getlookid);
+
+//$images[] =  $displayProduct->getImage1();
+$images[] =  $displayProduct->getImage2();
+$images[] =  $displayProduct->getImage3();
+$images[] =  $displayProduct->getImage4();
+$images[] =  $displayProduct->getImage5();
+$images[] =  $displayProduct->getImage6();
+
+/**
+* display product collection
+*/
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+?>
+<div class="clear"></div>
+   <div class="all-product-wrapper">
+   <div class="all-product-container">
+
+	<div class="page-title category-title">
+		<h1><?php echo $this->__('Get the Look');?></h1>
+		<p class="title-img"><img src="<?php echo $this->getSkinUrl('images/heading-border.png')?>"></p>
+	</div>
+	
+    <div id="loader-image" style="display: none;">
+		<img src="<?php echo Mage::getBaseUrl('skin') . 'frontend/base/default/images/ajax-loader.gif' ?>" />
+    </div>
+	<?php if($getlookid){ ?>
+	
+	<div class="getlook">
+		<div class="getlook-image getlookcontent">
+			<div class="main-image">
+				<img id="main_image" src="<?php echo $this->helper('gethelook')->resize($images[0],'515,750'); ?>">
+				<div class="thumnails">
+					<ul>
+						<?php
+						foreach($images as $g_image) {
+							if(! $g_image) continue;
+							echo "<li><a href='javascript:void(0)' data-image=\"".Mage::helper('gethelook')->resize($g_image, '515,750')."\" class='thumbs_img'><img  src=\"".Mage::helper('gethelook')->resize($g_image, '95')."\"></a></li>";
+						}
+						?>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="getlook-content getlookcontent">
+			<h6>Artist. Creator. Threat. Canvas Tote</h6>
+			<p>Aleana Leuis</p>
+			<button class="play"></button>
+			<button class="button">Original Hair Review</button>
+			<div class="social_links">
+				<ul>
+					<li>Share:</li>
+					<li class="facebook"><a href="#"><img src="<?php echo $this->getSkinUrl('images/fb-new-de.png')?>" /></a></li>
+					<li class="twitter"><a href="#"><img src="<?php echo $this->getSkinUrl('images/twitter-new-de.png')?>" /></a></li>
+					<li class="pin"><a href="#"><img src="<?php echo $this->getSkinUrl('images/pin-new-de.png')?>" /></a></li>
+				</ul>
+			</div>
+			<div class="seller-comments">
+				<label>Seller Comments:</label>
+				<textarea name="sellercommnets" placeholder="About your experience with the product"></textarea>
+			</div>
+		</div>
+	</div>
+	
+	<?php } ?>
+	<?php if(! isset($getlookid)){ ?>
+    <ul id = "mp-product-list" class="products-grid product_snipt f-left">       
+        <?php
+        $displayProduct = Mage::getModel("gethelook/gethelook")->getCollection()->addFieldToFilter('customer_id',$id);
+        /**
+         * Check the display product count is greater than zero
+         */
+        if (count($displayProduct) > 0) {
+            foreach ($displayProduct as $_product) {
+            
+            /**
+             * count the words of the product name
+             */
+                $wordsCountCategory = strlen($_product->getName());                 
+                ?>
+                <li class="item">
+			<a href="<?php echo $this->getBaseUrl() . $getRequestPath . "?getlook={$_product->getId()}"; ?>">
+                        <img class="product-image" src="<?php echo $this->helper('gethelook')->resize($_product->getImage1(), '250,313'); ?>" alt="<?php
+                         echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                    </a>
+                    <div class="product-info">
+                    <?php 
+                    /**
+                     * Display product name
+                     */
+                    ?>              
+                    <h2 class="product-name">
+                        <a href="<?php echo $_product->getProductUrl(); ?>"> 
+                            <?php if ($wordsCountCategory > 15) { 
+                                echo substr($this->htmlEscape($_product->getName()), 0, 15) . '...';
+                                } else {
+                                echo $_product->getName();
+                             } ?>
+                        </a>
+                       
+                    </h2> 
+					<h3 class="product-by"><span style="font-weight:normal" >By</span> <?php echo $sellerPage->getStoreTitle(); ?></h3>
+					<div class="product-size">
+						<p><?php echo round($_product->getSizeFilter(),0) ?>”</p>
+					</div><!-- product-size -->
+					<div class="product-count">
+						<p><?php echo count(explode(',',$_product->getProductsIds()))?></p>
+					</div><!-- product-count -->
+                   <div class="price-box"> <span class="regular-price">             
+                        <span class="price">
+                            <?php
+                            /**
+                             * Display Product Price
+                             * Get the product price
+                             * Get Prodcut special price
+                             * Get deal expire date
+                             */
+                            $price = $_product->getPrice();
+                            $splPrice = $_product->getSpecialPrice();
+                            $dealExpireDate = $_product->getSpecialToDate();
+                            /**
+                             * Check the product special price is not equal to empty
+                             * and deal expire date is not equal to empty
+                             * and deal expire date is greater than or equal to current date
+                             * if so get the original price
+                             * Get the discount price
+                             * Calculate the saving amount
+                             * Calcualte the savings percentage
+                             */
+                            if (!empty($splPrice) && ($dealExpireDate != '') && ($dealExpireDate >= $currentDate)) { 
+                                $originalPrice = $_product->getPrice(); 
+                                $discountPrice = $_product->getSpecialPrice(); 
+                                $savings = $originalPrice - $discountPrice; 
+                                $savingsPercentage = round(($savings / $originalPrice) * 100, 0);?>
+                              <p class="original_price"><?php  echo '<del>' . Mage::helper('core')->currency($price, true, false) . '</del>'; ?></p>
+                               <p class="offer_price"><?php echo Mage::helper('core')->currency($splPrice, true, false); ?></p>
+                               <p class="discount_price"> <?php echo $savingsPercentage.'%';?></p>
+                            <?php } else { ?>
+                              <p> <?php echo Mage::helper('core')->currency($price, true, false); ?></p>
+                          <?php  }
+                            ?>
+                        </span>
+                    </span></div>
+                    <?php 
+                            /**
+                             * Display Add to cart, 
+                             * add to wishlist 
+                             * and Add to compare
+                             */
+                            ?>  
+					
+                    </div>
+                    
+                    
+                </li>
+                        <?php   }
+                    } else {
+                        echo '<li class="no_products_avail"><p>'.$this->__('There is no product available for this seller.').'</p></li>';
+                    }    ?>
+    </ul>
+	
+	<a href="javascript:void(0)" class="view-all view-all-products">View all</a>
+	<a href="javascript:void(0)" style="display:none" class="view-all view-less-products">View less</a>
+	<script>
+	jQuery(document).ready(function(){
+		jQuery(".view-all-products").click(function(){			
+				jQuery("ul#mp-product-list li").css('display','block');
+				jQuery(this).css('display','none');
+				jQuery('.view-less-products').css('display','block');
+			
+		});
+		jQuery(".view-less-products").click(function(){			
+				jQuery("ul#mp-product-list li").css('display','');
+				jQuery(this).css('display','none');
+				jQuery('.view-all-products').css('display','block');
+		});
+		
+});
+	
+	
+
+	</script>
+	<?php } ?>
+	</div><!-- all product wrapper container -->
+ 
+ 
+<?php if($getlookid){ ?>
+<!-- products for get look -->
+<?php 
+/**
+ * get seller id
+ */
+$id = $this->getRequest()->getParam('id');
+$currentDate = Mage::getModel('core/date')->date('Y-m-d');
+
+/**
+ * display product collection explode(',',$_product->getProductsIds())
+ */
+$prs = explode(',',$displayProduct->getProductsIds());
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+$collection = Mage::getModel ( 'catalog/product' )
+			->getCollection ()
+			->addFieldToFilter ( 'seller_id', $id)
+			->addFieldToFilter('entity_id', array('in'=> $prs));
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+?>
+
+<div class="clear"></div>
+		<div class="under-sink-container">
+			<div class="product-listing">
+				<ul class="getlook" >
+					<?php 
+						foreach($collection as $_product){
+						$_product = Mage::getModel("catalog/product")->load($_product->getId());
+					?>
+					<li class="item <?php echo $_product->getAttributeText("hair_type"); ?>">
+						<a href="<?php echo $_product->getProductUrl(); ?>" title="" class="product-image" title="<?php echo $_product->getName(); ?>">
+							<img id="product-collection-image-3" src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize(210); ?>" alt="<?php echo $_product->getName(); ?>" title="<?php echo $_product->getName(); ?>" ></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name">
+							<a href="<?php echo $this->getBaseUrl() . $getRequestPath . "?getlook={$_product->getId()}"; //$_product->getProductUrl(); ?>" title="<?php echo $_product->getName(); ?>">
+								<?php 
+									$wordsCountCategory = strlen($_product->getName());
+									if ($wordsCountCategory > 15) { 
+									echo substr($this->htmlEscape($_product->getName()), 0, 15) . '...';
+									} else {
+									echo $_product->getName();
+									} 
+									?>							 
+							</a>
+							</h2>
+							<h3 class="added-by">By <?php echo $sellerPage->getStoreTitle(); ?></h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span><?php echo round($_product->getSizeFilter(),0); ?>" inch</span>
+								</div>
+								<div class="price-box">                                            
+									<?php if($_product->getSpecialPrice()){ ?>
+										<p class="old-price"> 
+										<span class="price-label">Regular Price:</span>
+											<span class="price" id="old-price-3">
+													<?php echo Mage::helper('core')->currency($_product->getPrice(), true, false); ?>
+											</span>
+										</p>
+									<?php } ?>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">
+											<?php echo Mage::helper('core')->currency($_product->getSpecialPrice()? $_product->getSpecialPrice():$_product->getPrice() , true, false); ?>
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
+	
+<!-- products for get look -->
+<?php } ?>
+
+</div>
+
+<script>
+	jQuery(document).ready(function(){
+	
+		jQuery(".thumbs_img").click(function(){
+			
+			jQuery("#main_image").attr('src',jQuery(this).attr('data-image'))
+		});
+	
+	});
+</script>

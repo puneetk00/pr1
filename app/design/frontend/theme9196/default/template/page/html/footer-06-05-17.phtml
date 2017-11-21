@@ -1,0 +1,75 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="footer-container">
+    <div class="footer">
+		<div class="footer-links">
+			<div class="container">
+				<ul>
+					<li>ABOUT US</li>
+					<li><a href="#">WHO WE ARE</a></li>
+					<li><a href="#">WORK AT CASH YOUR BUNDLES</a></li>
+					<li><a href="#">CONTACT US</a></li>
+				</ul>
+				<ul>
+					<li>CUSTOMERS</li>
+					<li><a href="#">RETURNS AND EXCHANGES</a></li>
+					<li><a href="#">SHIPPING INFORMATION</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+				<ul>
+					<li>SELLERS</li>
+					<li><a href="#">DASHBOARD</a></li>
+					<li><a href="#">APPLY</a></li>
+					<li><a href="#">SELL WITH  CASH YOUR BUNDLES</a></li>
+				</ul>
+				<ul>
+					<li>COMMUNITY</li>
+					<li><a href="#">CASH YOUR BUNDLES MAGAZINE</a></li>
+					<li><a href="#">STYLE’D BY CASH YOUR BUNDLES</a></li>
+					<li><a href="#">HEADWRAP CENTRAL</a></li>
+				</ul>
+				<ul class="social-link">
+					<li>Social Connect</li>
+					<li class="facebook"><a href="http://www.facebook.com/CashYourBundles" target="_blank">Facebook</a></li>
+					<li class="instagram"><a href="http://www.instagram.com/cashyourbundles" target="_blank">Insagram</a></li>
+					<li class="twitter"><a href="#">Twitter</a></li>
+					<li class="pin"><a href="#">Pin</a></li>
+				</ul>
+			</div><!-- container -->
+		</div><!-- footer-links -->
+		
+        <!--?php echo $this->getChildHtml() ? -->
+		
+		<address class="copyright">
+			<div class="container">
+				<!-- <p>&copy; 2016 Cash Your Bundles, LLC <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+				<p>We Accept PayPal, Visa, Mastercard, Discover and American Express</p>  -->
+				<?php echo $this->getCopyright() ?>
+			</div><!-- container -->			
+		</address>
+    </div>
+</div>

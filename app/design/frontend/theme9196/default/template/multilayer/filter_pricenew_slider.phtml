@@ -1,0 +1,62 @@
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<style type="text/css">
+		#slider-container {
+			width: 350px;
+			background: #cfcfcf;
+			max-width: 100%;
+			border-radius: 15px;
+			border: 1px solid #cfcfcf;
+			height: 11px;
+		}
+		.ui-slider-range {
+			background: #ff0080;
+			border: 1px solid #ff0080;
+		}
+		.ui-state-default, .ui-widget-content .ui-state-default {
+			border-radius: 100%;
+			border: 1px solid #cfcfcf;
+			background: #fff;
+		}
+		.ui-state-default:focus, .ui-widget-content .ui-state-default:focus {
+			outline: none;
+		}
+		a.filter-btn {
+			width: 87px;
+			display: inline-block;
+			height: 42px;
+			background: #000;
+			color: #fff;
+			text-align: center;
+			line-height: 42px;
+			font-family: 'open sans', sans-serif;
+			text-decoration: none;
+			font-size: 18px;
+		}
+	</style>
+	<script type="text/javascript">
+		$( function() {
+			$( "#slider-container" ).slider({
+				range: true,
+				min: 1,
+				max: 1099,
+				values: [0, 1099],
+				slide: function( event, ui ) {
+					$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				}
+			});
+			$( "#amount" ).val( "$" + $( "#slider-container" ).slider( "values", 0 ) +
+				" - $" + $( "#slider-container" ).slider( "values", 1 ) );
+		} );
+	</script> 
+	
+<div class="filter-price-wrapper">
+	<h1>Filter By Price</h1>
+	<div id="slider-container"></div>
+	<p>
+		<a href="javascript:void(0)" class="filter-btn">Filter</a>
+		<label for="amount">Price:</label>
+		<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+</div><!-- filter-price-wrapper -->

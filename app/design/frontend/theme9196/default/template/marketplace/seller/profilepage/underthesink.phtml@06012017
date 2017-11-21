@@ -1,0 +1,188 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.9.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ */
+?>
+ 
+<?php 
+/**
+ * get seller id
+ */
+$id = $this->getRequest()->getParam('id');
+$currentDate = Mage::getModel('core/date')->date('Y-m-d');
+
+/**
+ * display product collection
+ */
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+?>
+<div class="clear"></div>
+	<div class="under-sink-wrapper">
+		<div class="under-sink-container">
+			<h1>Under The Sink</h1>
+			<p class="title-img"><img src="http://synapse.asia/marketplace9196/skin/frontend/theme9196/default/images/heading-border.png"></p>
+			<div class="listing-tabber">
+				<ul>
+					<li><a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('images/straight.png')?>" >Straight <span class="num">(7)</span></a></li>
+					<li><a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('images/wavy.png')?>" >Wavy <span class="num">(10)</span></a></li>
+					<li><a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('images/curly.png')?>" >Curly <span class="num">(15)</span></a></li>
+					<li><a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('images/coily.png')?>" >Coily <span class="num">(5)</span></a></li>
+				</ul>
+			</div><!-- listing-tabber -->
+			<div class="product-listing">
+				<ul>
+					<li class="item">
+						<a href="#" title="" class="product-image">
+							<img id="product-collection-image-3" src="http://synapse.asia/marketplace9196/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/t/e/test3-img_1.jpg" alt="Brazilian Kinky Curly"></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name"><a href="http://synapse.asia/marketplace9196/index.php/test-28.html" title="Brazilian Kinky Curly">Brazilian Kinky Curly</a></h2>
+							<h3 class="added-by">By Luis</h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span>12” inch</span>
+								</div>
+								<div class="price-box">                                            
+									<p class="old-price"> <span class="price-label">Regular Price:</span>
+										<span class="price" id="old-price-3">$20.00</span>
+									</p>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">$12.00</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="item">
+						<a href="#" title="" class="product-image">
+							<img id="product-collection-image-3" src="http://synapse.asia/marketplace9196/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/t/e/test3-img_1.jpg" alt="Brazilian Kinky Curly"></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name"><a href="http://synapse.asia/marketplace9196/index.php/test-28.html" title="Brazilian Kinky Curly">Brazilian Kinky Curly</a></h2>
+							<h3 class="added-by">By Luis</h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span>12” inch</span>
+								</div>
+								<div class="price-box">                                            
+									<p class="old-price"> <span class="price-label">Regular Price:</span>
+										<span class="price" id="old-price-3">$20.00</span>
+									</p>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">$12.00</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="item">
+						<a href="#" title="" class="product-image">
+							<img id="product-collection-image-3" src="http://synapse.asia/marketplace9196/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/t/e/test3-img_1.jpg" alt="Brazilian Kinky Curly"></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name"><a href="http://synapse.asia/marketplace9196/index.php/test-28.html" title="Brazilian Kinky Curly">Brazilian Kinky Curly</a></h2>
+							<h3 class="added-by">By Luis</h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span>12” inch</span>
+								</div>
+								<div class="price-box">                                            
+									<p class="old-price"> <span class="price-label">Regular Price:</span>
+										<span class="price" id="old-price-3">$20.00</span>
+									</p>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">$12.00</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="item">
+						<a href="#" title="" class="product-image">
+							<img id="product-collection-image-3" src="http://synapse.asia/marketplace9196/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/t/e/test3-img_1.jpg" alt="Brazilian Kinky Curly"></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name"><a href="http://synapse.asia/marketplace9196/index.php/test-28.html" title="Brazilian Kinky Curly">Brazilian Kinky Curly</a></h2>
+							<h3 class="added-by">By Luis</h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span>12” inch</span>
+								</div>
+								<div class="price-box">                                            
+									<p class="old-price"> <span class="price-label">Regular Price:</span>
+										<span class="price" id="old-price-3">$20.00</span>
+									</p>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">$12.00</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="item">
+						<a href="#" title="" class="product-image">
+							<img id="product-collection-image-3" src="http://synapse.asia/marketplace9196/media/catalog/product/cache/1/small_image/210x/9df78eab33525d08d6e5fb8d27136e95/t/e/test3-img_1.jpg" alt="Brazilian Kinky Curly"></a>
+						<div class="product-info" style="min-height: 87px;">
+							<h2 class="product-name"><a href="http://synapse.asia/marketplace9196/index.php/test-28.html" title="Brazilian Kinky Curly">Brazilian Kinky Curly</a></h2>
+							<h3 class="added-by">By Luis</h3>
+                            <div class="size-price-wrapper">
+								<div class="product-size">
+									<span>12” inch</span>
+								</div>
+								<div class="price-box">                                            
+									<p class="old-price"> <span class="price-label">Regular Price:</span>
+										<span class="price" id="old-price-3">$20.00</span>
+									</p>
+									<p class="special-price">
+										<span class="price-label">Special Price</span>
+										<span class="price" id="product-price-3">$12.00</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<a class="view-more" href="javascript:void(0)">View all</a>
+			</div>
+		</div>
+	</div><!-- under-sink-wrapper -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

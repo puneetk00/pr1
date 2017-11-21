@@ -1,0 +1,116 @@
+<section class="home-top-slider">
+	<ul class="bxslider">
+		<?php 
+			$banners_collection = Mage::getModel("banners/banners")
+			->getCollection()
+			->addFieldToFilter("banner_position",1) 
+			->addFieldToFilter("status",1); 
+			foreach($banners_collection as $_item){
+				echo "<li>";
+				echo "<a href=\"".$_item->getActionUrl()."\">";
+				echo "<img src=\"". Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $_item->getImage() . "\"/>";
+				echo "</a>";
+				echo "</li>";
+			}
+		?>
+	</ul>
+</section><!-- home-top-slider -->
+
+<section class="shop-with-wrapper">
+	<div class="container">
+		<div class="veiw-All">
+			<a href="<?php echo $this->getBaseUrl(). "marketplace/seller/allseller/"; ?>">View All</a>
+		</div>
+		<div class="title-heading">
+			<h1>Shop with our</h1>
+			<h2>Premium Bundlenaires</h2>
+			<p class="title-img">
+				<img src="<?php echo Mage::getBaseUrl("skin") ?>frontend/theme9196/default/images/heading-border.png" />
+			</p>
+		</div><!-- title-heading -->
+		<div class="owl-carousel owl-theme new-slider">
+			<?php 
+			 $tableName = Mage::getSingleton("core/resource")->getTableName('marketplace_sellerprofile');
+			 $banners_collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('customerstatus', 1);
+			 $banners_collection->getSelect()->join(array('t2' => $tableName),"e.entity_id = t2.seller_id and t2.store_title!=''", array('store_logo' => 't2.store_logo', 'store_title' => 't2.store_title'));
+			foreach($banners_collection as $_seller_collection){
+				$seller_id = $_seller_collection['entity_id'];
+				$get_requestPath = Mage::helper('marketplace/common')->getSellerRewriteUrl($seller_id);
+				echo "<div class=\"item\"><div class=\"slider-pic\">";
+				echo "<a href=\"".$get_requestPath."\">";
+				echo "<img src=\"". Mage::getBaseUrl('media') . "marketplace/resized/" . $_seller_collection['store_logo'] . "\"/>";
+				echo "</a>";
+				echo "</div></div>";
+			}
+			?>
+		
+		</div><!-- new-slider -->
+	</div><!-- container -->
+</section><!-- shop-with-wrapper -->
+
+<section class="how-does-wrapper">
+	<div class="container">
+		<div class="title-heading">
+			<h1>How Does</h1>
+			<h2>Cash Your Bundles Work?</h2>
+			<p class="title-img">
+				<img src="<?php echo Mage::getBaseUrl("skin") ?>frontend/theme9196/default/images/heading-border.png" />
+			</p>
+		</div><!-- title-heading -->
+		<div class="how-does-steps ">
+			<ul>
+				<li>
+					<span class="step-icon hair"></span>
+					<span class="step-heading">Collect all your bundles</span>
+					<span class="step-text">Open your hair drawer and select only your gently used and high quality virgin bundles to send in. We are highly selective so double check our quality criteria.</span>
+				</li>
+				<li>
+					<span class="step-icon face"></span>
+					<span class="step-heading">Let us make them new</span>
+					<span class="step-text">We take every bundle through our <a href="#">sanitization and revitalization method</a> to have them looking and feeling brand new</span>
+				</li>
+				<li>
+					<span class="step-icon coins"></span>
+					<span class="step-heading">Earn some extra coins</span>
+					<span class="step-text">Bundlenaire sellers earn cash on every sold bundle and Bundlenaire buyers get beautiful hair while keeping some money in their pocket</span>
+				</li>
+			</ul>
+		</div><!-- how-does-steps -->
+	</div><!-- container -->
+</section><!-- how-does-wrapper -->
+
+
+
+
+<script>
+	jQuery(document).ready(function() {
+	  jQuery('.owl-carousel').owlCarousel({
+		loop: true,
+		margin: 10,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items:1,
+			nav: true
+		  },
+		  600: {
+			items: 3,
+			nav: true
+		  },
+		  1000: {
+			items: 5,
+			nav: true,
+			margin: 30
+		  }
+		}
+	  });
+	});
+	jQuery(document).ready(function(){
+		jQuery('.bxslider').bxSlider();
+	});
+</script>
+<style>
+	@media (min-width:768px) and (max-width:1024px){
+		.shop-with-wrapper .veiw-All a {margin-right: 30px;}		
+	}
+</style>

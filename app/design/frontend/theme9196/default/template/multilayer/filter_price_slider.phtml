@@ -1,0 +1,160 @@
+
+<?php 
+    //todo: move logic to the block
+    list($min,$max) = $this->_filter->getMinMaxPriceInt(); 
+    list($from,$to) = explode(',', $this->_filter->getActiveState()); 
+    
+    $from = floor(max($from, $min));
+    
+    if ($to) {
+        $to   = ceil(min($to, $max));
+    } else {
+        $to = $max;
+    }
+    
+    if ($to<1 && $from<1) {
+        $to = $max;
+    }
+
+	//Set the slider width
+    $width = 170;
+    
+    if ($max) {
+        if ($max == $min) {
+            $firstOffset = 0;
+            $secondOffset = $width;
+        } else  {
+			$firstOffset  = ($from-$min)*$width/($max-$min);
+			$secondOffset = ($to-$min)*$width/($max-$min);
+        }
+    } else  {
+			$firstOffset  = 0;
+			$secondOffset = 0;
+    }
+?>
+<ol style="display:none">
+    <li>
+<?php if ($to != $from) :?> 
+<div id="ptech_multilayer_price_slider<?php echo $this->_filter->getRequestVar()?>" class="price_slider">
+    <div class="handle selected" style="left:<?php echo $firstOffset?>px"></div>
+    <div class="handle" style="left:<?php echo $secondOffset?>px"></div>
+  </div>
+<?php endif;?> 
+
+<?php if ($to != $from) :?> 
+<?php echo $this->__('Range:')?> 
+<?php echo $this->getSymbol()?><span id="price_range_from<?php echo $this->_filter->getRequestVar()?>"><?php echo $from?></span>-<?php echo $this->getSymbol()?><span id="price_range_to<?php echo $this->_filter->getRequestVar()?>"><?php echo $to?></span>
+<script type="text/javascript">
+    var slider = create_price_slider(<?php echo $width.', '.$firstOffset.', '.$secondOffset.', '.$min.', '.$max.',"'.$this->_filter->getRequestVar()?>");
+</script>
+<?php else:?>
+<?php echo $this->__('Value:')?> 
+<?php echo $this->getSymbol()?><span id="price_range_from<?php echo $this->_filter->getRequestVar()?>"><?php echo $from?></span>
+<?php endif;?> 
+    </li>
+</ol>
+
+
+
+<?php if($this->_filter->getRequestVar() == "price"): ?>
+	<script type="text/javascript">
+		jQuery( function() {
+			var startprice = <?php echo $min; ?>;
+			var endprice = <?php echo $max; ?>;
+			var priceval = jQuery("#ptech_multilayer_params").val();
+			var pricesrt = priceval.split("&");
+			jQuery.each(pricesrt,function(index,value){
+			  var pricgetss = value.split("=");
+			  if(pricgetss[0] == "price"){
+				var startandendprice = pricgetss[1].split("%2C");
+				startprice = startandendprice[0];
+				endprice = startandendprice[1];
+				console.log(endprice);
+			  }
+			 
+			});
+			
+			jQuery( "#slider-container" ).slider({
+				range: true,
+				min: <?php echo $min; ?>,
+				max: <?php echo $max; ?>,
+				values: [startprice, endprice],
+				slide: function( event, ui ) {
+					jQuery( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+					jQuery("#ptech_multilayer_params").val("price="+ui.values[ 0 ]+'%2c'+ui.values[ 1 ]);
+				}
+			});
+			jQuery( "#amount" ).val( "$" + jQuery( "#slider-container" ).slider( "values", 0 ) +
+				" - $" + jQuery( "#slider-container" ).slider( "values", 1 ) );
+		} );
+	</script> 
+	
+<div class="filter-price-wrapper">
+	<h1>Filter By Price</h1>
+	<div id="slider-container"></div>
+	<p>
+		<a href="javascript:ptech_multilayer_make_request()" class="filter-btn">Filter</a>
+		<label for="amount">Price:</label>
+		<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+</div><!-- filter-price-wrapper -->
+<?php endif; ?>
+
+
+<?php if($this->_filter->getRequestVar() == "size_filter"): ?>
+<script>
+	jQuery( function() {
+			var startsize = <?php echo $min; ?>;
+			var endsize = <?php echo $max; ?>;
+			var priceval = jQuery("#ptech_multilayer_params").val();
+			var pricesrt = priceval.split("&");
+			jQuery.each(pricesrt,function(index,value){
+			  var sizegetss = value.split("=");
+			  if(sizegetss[0] == "size_filter"){
+				var startandendsize = sizegetss[1].split("%2C");
+				startsize = startandendsize[0];
+				endsize = startandendsize[1];
+			}
+			});
+			
+		jQuery( "#slider-range" ).slider({
+			orientation: "vertical",
+			range: true,
+			min: 10,
+			max: 30,
+			values: [startsize, endsize],
+			slide: function( event, ui ) {
+				jQuery( "#size" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				jQuery("#ptech_multilayer_params").val("size_filter="+ui.values[ 0 ]+'%2c'+ui.values[ 1 ]);
+			}
+		});
+		jQuery( "#size" ).val( "$" + jQuery( "#slider-range" ).slider( "values", 0 ) +
+			" - $" + jQuery( "#slider-range" ).slider( "values", 1 ) );
+	} );
+</script>
+
+<div class="filter-price-wrapper">
+	<h1>Filter By Length</h1>
+	<!-- p>
+		<label for="size">Target sales goal (Millions):</label>
+		<input type="text" id="size" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p -->
+	<img src="http://synapse.asia/marketplace9196/skin/frontend/theme9196/default/images/Ptech/hair.png">
+	<div id="slider-range">
+		<ul class="ver-range-list">
+			<li>- 30&rdquo;</li>
+			<li>- 28&rdquo;</li>
+			<li>- 26&rdquo;</li>
+			<li>- 24&rdquo;</li>
+			<li>- 22&rdquo;</li>
+			<li>- 20&rdquo;</li>
+			<li>- 18&rdquo;</li>
+			<li>- 16&rdquo;</li>
+			<li>- 14&rdquo;</li>
+			<li>- 12&rdquo;</li>
+			<li>- 10&rdquo;</li>
+		</ul>
+	</div>	
+	<a href="javascript:ptech_multilayer_make_request()" class="filter-btn">Filter</a>
+</div><!-- filter-price-wrapper -->
+<?php endif; ?>

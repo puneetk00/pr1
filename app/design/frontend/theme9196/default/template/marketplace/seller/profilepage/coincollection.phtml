@@ -1,0 +1,77 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.9.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ */
+?>
+ 
+<?php 
+/**
+ * get seller id
+ */
+$getlookid = Mage::app()->getRequest()->getParam("getlook");
+$id = $this->getRequest()->getParam('id');
+$currentDate = Mage::getModel('core/date')->date('Y-m-d');
+
+/**
+ * display product collection
+ */
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+$displayReview = Apptha_Marketplace_Block_Allreview::getCollection();
+if(! isset($getlookid)){
+if (count($displayReview) > 0) {
+	
+?>
+<div class="clear"></div>
+   <div class="coin-collection-wrapper-outer">
+		<div class="coin-collection-container">
+			<h1>Coin Collection</h1>
+			<p class="title-img"><img src="http://synapse.asia/marketplace9196/skin/frontend/theme9196/default/images/heading-border.png"></p>
+			<div class="coin-collection-wrapper">
+			<?php foreach ($displayReview as $_displayReview) { 
+				$cus_id = $_displayReview['customer_id'];
+				$customerData = Mage::getModel('customer/customer')->load($cus_id)->getData(); 
+			?>
+				<div class="coin-collection-list">
+					<ul>
+						<li class="coin-img"><img src="<?php echo $this->getSkinUrl('images/doller.png')?>" /></li>
+						<li class="coin-au-name">
+							<h3><?php echo $customerData['firstname']; ?></h3>
+							<h4 class="date"><?php $date = $_displayReview['created_at']; echo $new_date = date('M j, Y', strtotime($date));
+                    ?> </h4>
+						</li>
+						<li class="coin-brand-name">Hair Brand, Coily</li>
+						<li class="coin-des"><?php echo $_displayReview['review']; ?> </li>
+					</ul>
+				</div><!-- coin-collection-list -->
+			<?php } ?>
+			</div><!-- coin-collection-wrapper -->
+		</div><!-- coin-collection-container -->
+   </div><!-- coin-collection-wrapper -->
+ <?php } ?>
+ <?php } ?>
+ 

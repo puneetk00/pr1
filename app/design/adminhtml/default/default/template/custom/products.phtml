@@ -1,0 +1,109 @@
+<?php 
+	$collection = Mage::getModel ( 'catalog/product' )
+		->getCollection()
+		->addFieldToFilter( 'seller_id', 2 ); 
+	$model = Mage::getModel("gethelook/gethelook")->load(Mage::app()->getRequest()->getParam('id'));
+	
+	$admin_user = Mage::getSingleton('admin/session')->getUser()->getUserId();
+	
+?>
+
+
+<input type="text" name="customer_id" value="<?php echo $model->getCustomerId()? $model->getCustomerId(): $admin_user;  ?>" />
+<input type="text" name="products_ids" id="products_ids" value="<?php echo $model->getProductsIds() ?>"/>
+
+<label>Search..</label>
+<input id="myInput" type="text" />
+<table id="myTable" style="width:100%">
+	<colgroup><col width="20" class="a-center">
+		<col width="50">
+		<col width="50">
+		<col width="100">
+		<col>
+		<col width="100">
+		<col width="100">
+	</colgroup>
+	<thead>
+		<tr class="headings" style="background:#ccc">
+			<th></th>
+			<th>Id</th>
+			<th>Image</th>
+			<th>Name</th>
+			<th>Sku</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php 
+foreach($collection as $_product){
+$_product = Mage::getModel("catalog/product")->load($_product->getId());
+?>
+<tr>
+	<td><input onclick="getCheckedBoxes('selectedpr')" class="styleproduct" type="checkbox" name="selectedpr" value="<?php echo $_product->getId() ?>"></td>
+	<td><?php echo $_product->getId() ?></td>
+	<td><img width="50" src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_UNSECURE_URL)."media/catalog/product".$_product->getImage() ?>" /></td>
+	<td><?php echo $_product->getName() ?></td>
+	<td><?php echo $_product->getSku() ?></td>
+	<td><?php echo $_product->getPrice() ?></td>
+</tr>
+<?php
+}
+?>
+	
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	// Pass the checkbox name to the function
+function getCheckedBoxes(chkboxName) {
+  var checkboxes = document.getElementsByName(chkboxName);
+  var checkboxesChecked = [];
+  // loop over them all
+  for (var i=0; i<checkboxes.length; i++) {
+     // And stick the checked ones onto an array...
+     if (checkboxes[i].checked) {
+        checkboxesChecked.push(checkboxes[i].value);
+     }
+  }
+  // Return the array if it is non-empty, or null
+  var prids = checkboxesChecked.length > 0 ? checkboxesChecked : null;
+  document.getElementById("products_ids").value = prids.join();
+}
+
+// checked selected items
+function setCheckedBoxes(chkboxName) {
+  var selectedpr = document.getElementById("products_ids").value;
+  var checkboxes = document.getElementsByName(chkboxName);
+  var checkboxesChecked = [];
+  // loop over them all
+  for (var i=0; i<checkboxes.length; i++) {
+     // And stick the checked ones onto an array...
+     if (selectedpr.split(',').indexOf(checkboxes[i].value) != -1 ) {
+        checkboxes[i].checked = true;
+     }
+  }
+  // Return the array if it is non-empty, or null
+}
+setCheckedBoxes('selectedpr');
+</script>
+
+<script type="text/javascript">
+	function filterTable(event) {
+    var filter = event.target.value.toUpperCase();
+    var rows = document.querySelector("#myTable tbody").rows;
+    
+    for (var i = 0; i < rows.length; i++) {
+        var firstCol = rows[i].cells[1].textContent.toUpperCase();
+        var secondCol = rows[i].cells[3].textContent.toUpperCase();
+        var thirddCol = rows[i].cells[4].textContent.toUpperCase();
+        var forthCol = rows[i].cells[5].textContent.toUpperCase();
+        if (firstCol.indexOf(filter) > -1 || secondCol.indexOf(filter) > -1 || thirddCol.indexOf(filter) > -1 || forthCol.indexOf(filter) > -1) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }      
+    }
+}
+
+document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+</script>

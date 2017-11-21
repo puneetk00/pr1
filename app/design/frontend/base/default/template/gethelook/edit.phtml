@@ -1,0 +1,308 @@
+<?php 
+$item = Mage::registry("gethelook_data");	
+$admin_user = Mage::getSingleton('customer/session')->getCustomer()->getId();
+?>
+<form id="edit_form" action="<?php echo $this->getUrl('gethelook/index/save', array('id'=>$item->getId())); ?>" method="post" enctype="multipart/form-data">
+<div class="fieldset">
+	<h2 class="legend"><?php echo $this->__('Get The Look'); ?></h2>
+<div class="fieldset " id="gethelook_form">
+	<div class="hor-scroll">
+		<table cellspacing="0" class="form-list">
+			<tbody>
+				<tr>
+					<td class="label">
+						<label for="name"><?php echo $this->__('Style Name'); ?></label>
+					</td>
+					<td class="value">
+						<input id="name" name="name" value="<?php echo $item->getName() ?>" type="text" class=" input-text">
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image1">Image 1</label>
+						</td>
+						<td class="value">
+							<?php if($item->getImage1() != ''): ?>
+								<a href="<?php echo $this->getmediaurl($item->getImage1()) ?>" onclick="imagePreview('image1_image'); return false;">
+									<img src="<?php echo $this->getmediaurl($item->getImage1()) ?>" id="image1_image" title="<?php echo $item->getImage1() ?>" alt="<?php echo $item->getImage1() ?>" height="22" width="22" class="small-image-preview v-middle">
+								</a>
+							<?php endif; ?>
+							<input id="image1" name="image1" value="<?php echo $item->getImage1() ?>" type="file" class="input-file">
+							<?php if($item->getImage1() != ''): ?>
+							<span class="delete-image">
+								<input type="checkbox" name="image1[delete]" value="1" class="checkbox" id="image1_delete">
+									<label for="image1_delete"> Delete Image</label>
+									<input type="hidden" name="image1[value]" value="<?php echo $item->getImage1() ?>">
+							</span> 
+							<?php endif; ?>
+							<p class="note" id="note_image1">
+								<span>(*.jpg, *.png, *.gif)</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image2">Image 2</label>
+						</td>
+						<td class="value">
+						<?php if($item->getImage2() != ''): ?>
+						<a href="<?php echo $this->getmediaurl($item->getImage2()) ?>" onclick="imagePreview('image2_image'); return false;">
+							<img src="<?php echo $this->getmediaurl($item->getImage2()) ?>" id="image2_image" title= height="22" width="22" class="small-image-preview v-middle">
+						</a>
+						<?php endif; ?>
+						<input id="image2" name="image2" value="<?php echo $item->getImage1() ?>" type="file" class="input-file">
+						<?php if($item->getImage2() != ''): ?>
+						<span class="delete-image">
+							<input type="checkbox" name="image2[delete]" value="1" class="checkbox" id="image2_delete">
+							<label for="image2_delete"> Delete Image</label>
+							<input type="hidden" name="image2[value]" value="<?php echo $item->getImage2() ?>">
+						</span>  
+						<?php endif; ?>
+						<p class="note" id="note_image2">
+							<span>(*.jpg, *.png, *.gif)</span>
+						</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image3">Image 3</label>
+						</td>
+						<td class="value">
+						<?php if($item->getImage3() != ''): ?>
+							<a href="<?php echo $this->getmediaurl($item->getImage3()) ?>" onclick="imagePreview('image3_image'); return false;">
+								<img src="<?php echo $this->getmediaurl($item->getImage3()) ?>" id="image3_image" height="22" width="22" class="small-image-preview v-middle">
+							</a>
+						<?php endif; ?>
+							<input id="image3" name="image3" value="<?php echo $item->getImage1() ?>" type="file" class="input-file">
+							<?php if($item->getImage3() != ''): ?>
+								<span class="delete-image">
+									<input type="checkbox" name="image3[delete]" value="1" class="checkbox" id="image3_delete">
+									<label for="image3_delete"> Delete Image</label>
+									<input type="hidden" name="image3[value]" value="<?php echo $item->getImage3() ?>">
+								</span>      
+							<?php endif; ?>
+							<p class="note" id="note_image3">
+								<span>(*.jpg, *.png, *.gif)</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image4">Image 4</label>
+						</td>
+						<td class="value">
+						<?php if($item->getImage4() != ''): ?>
+							<a href="<?php echo $this->getmediaurl($item->getImage4()) ?>" onclick="imagePreview('image4_image'); return false;">
+								<img src="<?php echo $this->getmediaurl($item->getImage4()) ?>" id="image4_image"  height="22" width="22" class="small-image-preview v-middle">
+							</a>
+						<?php endif; ?>
+							<input id="image4" name="image4" value="<?php echo $item->getImage4() ?>" type="file" class="input-file">
+						<?php if($item->getImage4() != ''): ?>
+							<span class="delete-image">
+								<input type="checkbox" name="image4[delete]" value="1" class="checkbox" id="image4_delete">
+								<label for="image4_delete"> Delete Image</label>
+								<input type="hidden" name="image4[value]" value="<?php echo $item->getImage4() ?>">
+							</span>                    
+						<?php endif; ?>
+							<p class="note" id="note_image4">
+								<span>(*.jpg, *.png, *.gif)</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image5">Image 5</label>
+						</td>
+						<td class="value">
+						<?php if($item->getImage5() != ''): ?>
+							<a href="<?php echo $this->getmediaurl($item->getImage5()) ?>" onclick="imagePreview('image5_image'); return false;">
+								<img src="<?php echo $this->getmediaurl($item->getImage5()) ?>" id="image5_image" height="22" width="22" class="small-image-preview v-middle">
+							</a>
+						<?php endif; ?>
+							<input id="image5" name="image5" value="<?php echo $item->getImage5() ?>" type="file" class="input-file">
+						<?php if($item->getImage5() != ''): ?>
+							<span class="delete-image">
+								<input type="checkbox" name="image5[delete]" value="1" class="checkbox" id="image5_delete">
+								<label for="image5_delete"> Delete Image</label>
+								<input type="hidden" name="image5[value]" value="<?php echo $item->getImage5() ?>">
+							</span>                    
+						<?php endif; ?>
+							<p class="note" id="note_image5">
+								<span>(*.jpg, *.png, *.gif)</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<label for="image4">Image 6</label>
+						</td>
+						<td class="value">
+						<?php if($item->getImage6() != ''): ?>
+							<a href="<?php echo $this->getmediaurl($item->getImage6()) ?>" onclick="imagePreview('image6_image'); return false;">
+								<img src="<?php echo $this->getmediaurl($item->getImage6()) ?>" id="image4_image"  height="22" width="22" class="small-image-preview v-middle">
+							</a>
+						<?php endif; ?>
+							<input id="image6" name="image6" value="<?php echo $item->getImage6() ?>" type="file" class="input-file">
+							<?php if($item->getImage6() != ''): ?>
+							<span class="delete-image">
+								<input type="checkbox" name="image6[delete]" value="1" class="checkbox" id="image6_delete">
+								<label for="image6_delete"> Delete Image</label>
+								<input type="hidden" name="image6[value]" value="<?php echo $item->getImage6() ?>">
+							</span>                    
+							<?php endif; ?>
+							<p class="note" id="note_image6">
+								<span>(*.jpg, *.png, *.gif)</span>
+							</p>
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" class="hidden">
+							<input id="category_products" name="category_products" value="" type="hidden">
+						</td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+
+<div class="fieldset">
+	<h2 class="legend">Choose your get look products</h2>
+<?php 
+	
+	$collection = Mage::getModel ( 'catalog/product' )
+	->getCollection()
+	->addFieldToFilter( 'seller_id', $admin_user ); 
+	
+	$model = Mage::getModel("gethelook/gethelook")->load(Mage::app()->getRequest()->getParam('id'));	
+	
+?>
+
+
+<input type="hidden" name="customer_id" value="<?php echo $model->getCustomerId()? $model->getCustomerId(): $admin_user;  ?>" />
+<input type="hidden" name="products_ids" id="products_ids" value="<?php echo $model->getProductsIds()? $model->getProductsIds():''; ?>"/>
+
+<label>Search..</label>
+<input id="myInput" type="text" />
+<br/>
+<br/>
+<table id="myTable" style="width:100%">
+	<colgroup><col width="20" class="a-center">
+		<col width="50">
+		<col width="50">
+		<col width="100">
+		<col>
+		<col width="100">
+		<col width="100">
+	</colgroup>
+	<thead>
+		<tr class="headings" style="background:#ccc">
+			<th></th>
+			<th>Id</th>
+			<th>Image</th>
+			<th>Name</th>
+			<th>Sku</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php 
+foreach($collection as $_product){
+$_product = Mage::getModel("catalog/product")->load($_product->getId());
+?>
+<tr>
+	<td><input onclick="getCheckedBoxes('selectedpr')" class="styleproduct" type="checkbox" name="selectedpr" value="<?php echo $_product->getId() ?>"></td>
+	<td><?php echo $_product->getId() ?></td>
+	<td><img width="50" src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_UNSECURE_URL)."media/catalog/product".$_product->getImage() ?>" /></td>
+	<td><?php echo $_product->getName() ?></td>
+	<td><?php echo $_product->getSku() ?></td>
+	<td><?php echo $_product->getPrice() ?></td>
+</tr>
+<?php
+}
+?>
+	
+	</tbody>
+</table>
+</div>	
+																				
+																				
+<div class="buttons-set">
+	<p class="back-link"><a href="javascript:history.go(-1)"><small> << </small>Back</a></p>
+	<button type="button" onclick="edit_form.submit();" title="Save Address" class="button"><span><span>Save Look</span></span></button>
+	<button type="submit" onclick="saveAndContinueEdit();" title="Save Address" class="button" value="continue"><span><span>Save and Continue</span></span></button>
+	<button title="Delete Item" type="button" class="button" onclick="deleteConfirm('Are you sure you want to do this?', '<?php echo $this->getUrl('gethelook/index/delete', array('id'=>$item->getId())); ?>')" style=""><span><span><span>Delete Item</span></span></span></button>
+</div>
+</form>
+
+<script type="text/javascript">
+	// Pass the checkbox name to the function
+function getCheckedBoxes(chkboxName) {
+  var checkboxes = document.getElementsByName(chkboxName);
+  var checkboxesChecked = [];
+  // loop over them all
+  for (var i=0; i<checkboxes.length; i++) {
+     // And stick the checked ones onto an array...
+     if (checkboxes[i].checked) {
+        checkboxesChecked.push(checkboxes[i].value);
+     }
+  }
+  // Return the array if it is non-empty, or null
+  var prids = checkboxesChecked.length > 0 ? checkboxesChecked : null;
+  document.getElementById("products_ids").value = prids.join();
+}
+
+// checked selected items
+function setCheckedBoxes(chkboxName) {
+  var selectedpr = document.getElementById("products_ids").value;
+  var checkboxes = document.getElementsByName(chkboxName);
+  var checkboxesChecked = [];
+  // loop over them all
+  for (var i=0; i<checkboxes.length; i++) {
+     // And stick the checked ones onto an array...
+     if (selectedpr.split(',').indexOf(checkboxes[i].value) != -1 ) {
+        checkboxes[i].checked = true;
+     }
+  }
+  // Return the array if it is non-empty, or null
+}
+setCheckedBoxes('selectedpr');
+</script>
+
+<script type="text/javascript">
+	function filterTable(event) {
+    var filter = event.target.value.toUpperCase();
+    var rows = document.querySelector("#myTable tbody").rows;
+    
+    for (var i = 0; i < rows.length; i++) {
+        var firstCol = rows[i].cells[1].textContent.toUpperCase();
+        var secondCol = rows[i].cells[3].textContent.toUpperCase();
+        var thirddCol = rows[i].cells[4].textContent.toUpperCase();
+        var forthCol = rows[i].cells[5].textContent.toUpperCase();
+        if (firstCol.indexOf(filter) > -1 || secondCol.indexOf(filter) > -1 || thirddCol.indexOf(filter) > -1 || forthCol.indexOf(filter) > -1) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }      
+    }
+}
+
+document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+
+function saveAndContinueEdit()
+{
+	document.getElementById('edit_form').action = document.getElementById('edit_form').action+'back/edit/';
+	edit_form.submit();
+}
+
+function deleteConfirm(msg,url) {
+    var txt;
+    if (confirm(msg) == true) {
+       document.getElementById('edit_form').action = url;
+	   edit_form.submit();
+    }
+    
+}
+
+</script>

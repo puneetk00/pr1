@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <gethelook_adminhtml_gethelook_index>
+	<reference name="content">
+	  <block type="gethelook/adminhtml_gethelook" name="gethelook" />
+	</reference>
+  </gethelook_adminhtml_gethelook_index>
+</layout>

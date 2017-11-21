@@ -1,0 +1,84 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$_helper    = $this->helper('catalog/output');
+$_category = Mage::getModel('catalog/layer')->getCurrentCategory();
+///$currentCategoryId= $_category->getId();
+//$children = Mage::getModel('catalog/category')->load($currentCategoryId)->getChildren();
+?>
+<section class="listing-page-banner">
+	<div class="container">
+		
+		<div class="listing-tabber">
+			<ul>
+				<?php /*
+					<h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+					foreach (explode(',',$children) as $category)
+					{
+					    $category = Mage::getModel('catalog/category')->load($category);
+						echo $category->getShowSubcategory();
+						if($category->getIsActive()){
+						echo "<li>";
+						echo "<a href=\"{$category->getRequestPath()}\">";
+						echo "<img src=\"".Mage::getBaseUrl('media')."catalog/category/". $category->getImage()."\" /> {$category->getName()} <span class=\"num\">({$category->getProductCount()})</span>";
+						echo "</a>";
+						echo "</li>";
+						}
+					}*/
+				?>
+				
+				<li><a href="javascript:void(0)" atr-filter="22" class="hairfilter strait" ><img src="<?php echo $this->getSkinUrl('images/straight.png')?>" />Straight <!-- span class="num">(7)</span --></a></li>
+				<li><a href="javascript:void(0)" atr-filter="23" class="hairfilter wavy"><img src="<?php echo $this->getSkinUrl('images/wavy.png')?>" />Wavy <!-- span class="num">(10)</span --></a></li>
+				<li><a href="javascript:void(0)" atr-filter="24" class="hairfilter curly"><img src="<?php echo $this->getSkinUrl('images/curly.png')?>" />Curly <!-- span class="num">(15)</span --></a></li>
+				<li><a href="javascript:void(0)" atr-filter="21" class="hairfilter coily" ><img src="<?php echo $this->getSkinUrl('images/coily.png')?>" />Coily <!--span class="num">(5)</span--></a></li>
+				
+			</ul>
+		</div><!-- listing-tabber -->
+		
+	</div><!-- container -->
+</section><!-- listing-page-banner -->
+<script>
+	jQuery(document).ready(function() {
+		jQuery(".hairfilter").click(function(){
+			var filter = jQuery(this).attr('atr-filter');
+			jQuery("#ptech_multilayer_params").val("hair_type=" + filter);
+			jQuery(".hairfilter").closest('li').removeClass("active");		
+			jQuery(this).closest('li').addClass("active");		
+			ptech_multilayer_make_request()		
+		});
+		
+		
+		var priceval = jQuery("#ptech_multilayer_params").val();
+		var pricesrt = priceval.split("&");
+			jQuery.each(pricesrt,function(index,value){
+			var sizegetss = value.split("=");
+			if(sizegetss[0] == "hair_type"){
+				jQuery("[atr-filter="+sizegetss[1]+"]").closest('li').addClass("active");
+			};
+			});
+	});
+</script>
