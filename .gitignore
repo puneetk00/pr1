@@ -1,3 +1,7 @@
 # ignore zip rar
 *.rar
 *.zip
+
+#credentials 
+./app/etc/local.xml
+./media
