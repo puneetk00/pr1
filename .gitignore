@@ -3,5 +3,5 @@
 *.zip
 
 #credentials 
-./app/etc/local.xml
-./media
+app/etc/local.xml
+media
