@@ -46,8 +46,8 @@
 $cart = Mage::getSingleton('checkout/cart')->getItemsCount();
 $title = Mage::getStoreConfig('onestepcheckout/general/checkout_title');
 $description = Mage::getStoreConfig('onestepcheckout/general/checkout_description');
-$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
-$onestepapikey = $this->helper('onestepcheckout')->onestepApiKey();
+//$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
+//$onestepapikey = $this->helper('onestepcheckout')->onestepApiKey();
 $activateIn = Mage::getStoreConfig('onestepcheckout/general/Activate_apptha_onestepcheckout_cart');
 $activateOnestep = Mage::getStoreConfig('onestepcheckout/general/Activate_apptha_onestepcheckout');
 /**
@@ -87,11 +87,11 @@ if (($activateOnestep == 1) && ($cart != "")):
          * baseText
          * osctext
          */
-        $baseText = base64_decode('SW52YWxpZCBMaWNlbnNlIEtleSAtIEJ1eSBub3c=');
-        $oscText = base64_decode('aHR0cDovL3d3dy5hcHB0aGEuY29tL2NoZWNrb3V0L2NhcnQvYWRkL3Byb2R1Y3QvMjU=');
-        if ($apikey != $onestepapikey) {
-            echo base64_decode('PGgzIGlkPSJ0aXRsZS10ZXh0IiBzdHlsZT0iZmxvYXQ6bGVmdDtjb2xvcjpyZWQ7Zm9udC1zaXplOjE0cHg7bWFyZ2luOiA2cHggMCAwIDI0cHg7Ij48YSBocmVmPSJodHRwOi8vd3d3LmFwcHRoYS5jb20vY2hlY2tvdXQvY2FydC9hZGQvcHJvZHVjdC8yNSIgdGFyZ2V0PSJfYmxhbmsiID5JbnZhbGlkIExpY2Vuc2UgS2V5IC0gQnV5IG5vdzwvYT48L2gzPg==');
-        } ?>
+        //$baseText = base64_decode('SW52YWxpZCBMaWNlbnNlIEtleSAtIEJ1eSBub3c=');
+        //$oscText = base64_decode('aHR0cDovL3d3dy5hcHB0aGEuY29tL2NoZWNrb3V0L2NhcnQvYWRkL3Byb2R1Y3QvMjU=');
+        //if ($apikey != $onestepapikey) {
+          //  echo base64_decode('PGgzIGlkPSJ0aXRsZS10ZXh0IiBzdHlsZT0iZmxvYXQ6bGVmdDtjb2xvcjpyZWQ7Zm9udC1zaXplOjE0cHg7bWFyZ2luOiA2cHggMCAwIDI0cHg7Ij48YSBocmVmPSJodHRwOi8vd3d3LmFwcHRoYS5jb20vY2hlY2tvdXQvY2FydC9hZGQvcHJvZHVjdC8yNSIgdGFyZ2V0PSJfYmxhbmsiID5JbnZhbGlkIExpY2Vuc2UgS2V5IC0gQnV5IG5vdzwvYT48L2gzPg==');
+        //} ?>
 
         <div class="clear"></div>
         <?php
@@ -405,7 +405,7 @@ loading.hide();
                                             </tbody>
                                         </table>
                                     </form>
-                    <?php $this->shippingmethods($baseText, $oscText); ?>
+                    <?php //$this->shippingmethods($baseText, $oscText); ?>
                 </div>
                 <?php 
                 /**

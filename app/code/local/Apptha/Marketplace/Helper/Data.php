@@ -116,12 +116,12 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
      * @return int
      */
     public function checkMarketplaceKey() {
-        $apikey = Mage::getStoreConfig ( 'marketplace/marketplace/apply_apptha_licensekey' );
-        $marketplaceApiKey = $this->marketplaceApiKey ();
-        if ($apikey != $marketplaceApiKey) {
+        //$apikey = Mage::getStoreConfig ( 'marketplace/marketplace/apply_apptha_licensekey' );
+        //$marketplaceApiKey = $this->marketplaceApiKey ();
+        /* if ($apikey != $marketplaceApiKey) {
             $keyerror = base64_decode ( 'PGgzIHN0eWxlPSJmbG9hdDpsZWZ0O2NvbG9yOnJlZDttYXJnaW46IDMwMHB4IDQxMHB4OyB3aWR0aDoyNiU7IHRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7IiBpZD0idGl0bGUtdGV4dCI+PGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHA6Ly93d3cuYXBwdGhhLmNvbS9jaGVja291dC9jYXJ0L2FkZC9wcm9kdWN0LzE1NiIgc3R5bGU9ImNvbG9yOnJlZDsiPkludmFsaWQgTGljZW5zZSBLZXkgLSBCdXkgbm93PC9hPjwvaDM+' );
             die($keyerror );
-        }
+        } */
     }
     /**
      * Function to get the license key
@@ -131,10 +131,10 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
      * @return string
      */
     
-    public function marketplaceApiKey() {
+   /*  public function marketplaceApiKey() {
         $code = $this->genenrateOscdomain ();
         return substr ( $code, 0, 25 ) . "CONTUS";
-    }
+    } */
     /**
      * Function to get the domain key
      *
@@ -143,7 +143,7 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
      * @return string
      */
     
-    public function domainKey($tkey) {
+    /* public function domainKey($tkey) {
         $message = "EM-MKTPMP0EFIL9XEV8YZAL7KCIUQ6NI5OREH4TSEB3TSRIF2SI1ROTAIDALG-JW";
         $stringLength = strlen ( $tkey );
         for($i = 0; $i < $stringLength; $i ++) {
@@ -169,7 +169,7 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
             }
         }
         return $encMessage;
-    }
+    } */
     /**
      * Function to get the offset for license key
      *
@@ -206,7 +206,7 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
      * @return string
      */
     
-    public function genenrateOscdomain() {
+    /* public function genenrateOscdomain() {
         $subFolder = $matches = '';
         $strDomainName = Mage::app ()->getFrontController ()->getRequest ()->getHttpHost ();
         preg_match ( "/^(http:\/\/)?([^\/]+)/i", $strDomainName, $subFolder );
@@ -226,7 +226,7 @@ class Apptha_Marketplace_Helper_Data extends Mage_Core_Helper_Abstract {
             $response = "";
         }
         return $response;
-    }
+    } */
     
     /**
      * Function to get order currency Symbol

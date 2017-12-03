@@ -34,16 +34,16 @@
 <?php  echo $this->getMessagesBlock()->getGroupedHtml() ?>
 <p class="licensekey">
     <?php
-    $apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
-    $superdealsapikey = $this->helper('superdeals')->superDealsApiKey();
+    //$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
+    //$superdealsapikey = $this->helper('superdeals')->superDealsApiKey();
     $_id = $class= '';
 
     /**
      *  CHECKING WHETHER LICENSE KEY EXIST OR NOT
      */
-    if ($apikey != $superdealsapikey) {
-        echo base64_decode('SW52YWxpZCBMaWNlbnNlIEtleQ==');
-    }
+    //if ($apikey != $superdealsapikey) {
+      //  echo base64_decode('SW52YWxpZCBMaWNlbnNlIEtleQ==');
+    //}
     ?>
 </p>
 

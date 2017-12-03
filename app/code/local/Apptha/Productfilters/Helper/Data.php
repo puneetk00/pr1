@@ -180,11 +180,11 @@ class Apptha_Productfilters_Helper_Data extends Mage_Core_Helper_Data
   
      public function checkfilterKey()
     {
-    	$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
+    	/* $apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
     	$extendedmassactionApiKey = $this->extendedmassactionApiKey();
     	if ($apikey != $extendedmassactionApiKey) {
     		return  false;
-    	}
+    	} */
     
     	return true;
     }

@@ -81,17 +81,17 @@ if (($activateOnestep == 1) && ($cart != "")):
          * base text
          * osc text
          */
-        $baseText = $oscText = '';
+        //$baseText = $oscText = '';
         /**
          * base64 decode the values and assign it to variables
          * baseText
          * osctext
          */
-        $baseText = base64_decode('SW52YWxpZCBMaWNlbnNlIEtleSAtIEJ1eSBub3c=');
-        $oscText = base64_decode('aHR0cDovL3d3dy5hcHB0aGEuY29tL2NoZWNrb3V0L2NhcnQvYWRkL3Byb2R1Y3QvMjU=');
-        if ($apikey != $onestepapikey) {
-            echo base64_decode('PGgzIGlkPSJ0aXRsZS10ZXh0IiBzdHlsZT0iZmxvYXQ6bGVmdDtjb2xvcjpyZWQ7Zm9udC1zaXplOjE0cHg7bWFyZ2luOiA2cHggMCAwIDI0cHg7Ij48YSBocmVmPSJodHRwOi8vd3d3LmFwcHRoYS5jb20vY2hlY2tvdXQvY2FydC9hZGQvcHJvZHVjdC8yNSIgdGFyZ2V0PSJfYmxhbmsiID5JbnZhbGlkIExpY2Vuc2UgS2V5IC0gQnV5IG5vdzwvYT48L2gzPg==');
-        } ?>
+        //$baseText = base64_decode('SW52YWxpZCBMaWNlbnNlIEtleSAtIEJ1eSBub3c=');
+        //$oscText = base64_decode('aHR0cDovL3d3dy5hcHB0aGEuY29tL2NoZWNrb3V0L2NhcnQvYWRkL3Byb2R1Y3QvMjU=');
+      //  if ($apikey != $onestepapikey) {
+        //    echo base64_decode('PGgzIGlkPSJ0aXRsZS10ZXh0IiBzdHlsZT0iZmxvYXQ6bGVmdDtjb2xvcjpyZWQ7Zm9udC1zaXplOjE0cHg7bWFyZ2luOiA2cHggMCAwIDI0cHg7Ij48YSBocmVmPSJodHRwOi8vd3d3LmFwcHRoYS5jb20vY2hlY2tvdXQvY2FydC9hZGQvcHJvZHVjdC8yNSIgdGFyZ2V0PSJfYmxhbmsiID5JbnZhbGlkIExpY2Vuc2UgS2V5IC0gQnV5IG5vdzwvYT48L2gzPg==');
+        //} ?>
 
         <div class="clear"></div>
         <?php
@@ -404,7 +404,7 @@ loading.hide();
                                             </tbody>
                                         </table>
                                     </form>
-                    <?php $this->shippingmethods($baseText, $oscText); ?>
+                    <?php //$this->shippingmethods($baseText, $oscText); ?>
                 </div>
                 <?php 
                 /**

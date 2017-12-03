@@ -29,8 +29,8 @@
  */
 ?>
 <?php
-$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
-$onestepapikey = $this->helper('onestepcheckout')->onestepApiKey();
+//$apikey = Mage::getStoreConfig('marketplace/marketplace/apply_apptha_licensekey');
+//$onestepapikey = $this->helper('onestepcheckout')->onestepApiKey();
 $shippingmethod = Mage::getStoreConfig('onestepcheckout/general/default_shipping_method');
 $_shippingRateGroups = $this->getShippingRates();
 ?>
@@ -133,10 +133,10 @@ $_shippingRateGroups = $this->getShippingRates();
 <!---End of Shipping Methods -->
 <script type="text/javascript" >
 <?php
-if ($apikey != $onestepapikey) {
+//if ($apikey != $onestepapikey) {
     ?>
-        $('title-text').identify();
-<?php } ?>
+        //$('title-text').identify();
+<?php //} ?>
     $$('dl.shipment-methods input').invoke('observe', 'click', function() {
         shipping.reloadReviewBlock();
         var payment_methods = $('ajax-payment-methods');
