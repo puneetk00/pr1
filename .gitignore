@@ -3,5 +3,3 @@
 *.zip
 
 #credentials 
-app/etc/local.xml
-media
