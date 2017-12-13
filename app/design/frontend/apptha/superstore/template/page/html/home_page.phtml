@@ -1,0 +1,47 @@
+<section class="home-top-slider">
+	<ul class="bxslider">
+		<?php 
+			$banners_collection = Mage::getModel("banners/banners")
+			->getCollection()
+			->addFieldToFilter("banner_position",1) 
+			->addFieldToFilter("status",1); 
+			foreach($banners_collection as $_item){
+				echo "<li>";
+				echo "<a href=\"".$_item->getActionUrl()."\">";
+				echo "<img src=\"". Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $_item->getImage() . "\"/>";
+				echo "</a>";
+				echo "</li>";
+			}
+		?>
+	</ul>
+</section>
+
+
+
+<script>
+	jQuery(document).ready(function() {
+	  jQuery('.owl-carousel').owlCarousel({
+		loop: true,
+		margin: 10,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items:1,
+			nav: true
+		  },
+		  600: {
+			items: 3,
+			nav: true
+		  },
+		  1000: {
+			items: 5,
+			nav: true,
+			margin: 30
+		  }
+		}
+	  });
+	});
+	jQuery(document).ready(function(){
+		jQuery('.bxslider').bxSlider();
+	});
+</script>
