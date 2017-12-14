@@ -63,7 +63,7 @@
 	<!-- home banner -->
 	<cms_index_index>
 		<reference name="content">
-			<block type="core/template" template="page/html/home_page.phtml" name="home_page" />
+			<block type="core/template" template="page/html/home_page.phtml" name="home_page" before="_" />
 		</reference>
 	</cms_index_index>
 	<!-- home banner -->
