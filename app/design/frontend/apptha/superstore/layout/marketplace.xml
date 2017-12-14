@@ -63,7 +63,7 @@
 	<!-- home banner -->
 	<cms_index_index>
 		<reference name="content">
-			<block type="core/template" template="page/html/home_page.phtml" name="home_page" before="_" />
+			<block type="core/template" template="page/html/home_page.phtml" name="home_page" />
 		</reference>
 	</cms_index_index>
 	<!-- home banner -->
@@ -81,8 +81,7 @@
 			<remove name="catalog.compare.sidebar" />
 			<remove name="cart_sidebar" />
 			<remove name="sale.reorder.sidebar" />
-			<block type="marketplace/marketplace" name="marketplace_page_left"
-				before='-'>
+			<block type="marketplace/marketplace" name="marketplace_page_left" before='-'>
 				<action method="setTemplate" ifconfig="marketplace/marketplace/activate">
 					<template>marketplace/page/left.phtml</template>
 				</action>
