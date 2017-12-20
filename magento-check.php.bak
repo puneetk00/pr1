@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * A simple fix for a shell execution on preg_match('/[0-9]\.[0-9]+\.[0-9]+/', shell_exec('mysql -V'), $version);
  * The only edit that was done is that shell_exec('mysql -V') was changed to mysql_get_server_info() because not all
  * systems have shell access. XAMPP, WAMP, or any Windows system might not have this type of access. mysql_get_server_info()
