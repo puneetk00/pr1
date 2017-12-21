@@ -48,7 +48,7 @@
         <layout>
             <updates>
                 <sociallogin>
-                    <file>sssociallogin.xml</file>
+                    <file>sociallogin.xml</file>
                 </sociallogin>
             </updates>
         </layout>
