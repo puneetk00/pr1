@@ -4,5 +4,5 @@
 
 #credentials 
 var/
-.bak
+*.bak
 
