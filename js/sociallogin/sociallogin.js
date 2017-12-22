@@ -127,7 +127,7 @@ document.observe("dom:loaded", function() {
 
     catch (exception)
     {
-        //alert(exception);
+        //alert(exception); 
     }
 });
 
