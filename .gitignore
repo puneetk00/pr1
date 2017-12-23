@@ -1,6 +1,6 @@
 # ignore zip rar
 *.rar
-*.zip
+#*.zip
 
 #credentials 
 var/
